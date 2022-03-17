@@ -18,7 +18,6 @@ class _PageImcState extends State<PageImc> {
     pesoController.text = '';
     alturaController.text = '';
     setState(() {
-      String _infoText = "Informe seus dados!";
       _formKey = GlobalKey<FormState>();
     });
   }
@@ -48,6 +47,18 @@ class _PageImcState extends State<PageImc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Calculadora de IMC'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: _resetcampos,
+              icon: Icon(
+                Icons.refresh,
+                color: Colors.white,
+              ))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

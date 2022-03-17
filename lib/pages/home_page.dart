@@ -7,11 +7,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
-        title:  Text('Calculadora de IMC'),
-        centerTitle: true,
-      ),
-      body:  PageImc(),
+
+      body: PageImc(),
     );
   }
 }
