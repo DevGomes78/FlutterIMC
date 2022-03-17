@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:imc/components/text_widget.dart';
 
 class PageImc extends StatefulWidget {
   const PageImc({Key? key}) : super(key: key);
@@ -12,7 +14,7 @@ class _PageImcState extends State<PageImc> {
   var alturaController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _infoText='';
+  String _infoText = '';
 
   void _resetcampos() {
     pesoController.text = '';
@@ -48,12 +50,12 @@ class _PageImcState extends State<PageImc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculadora de IMC'),
+        title: const Text('Calculadora de IMC'),
         centerTitle: true,
         actions: [
           IconButton(
               onPressed: _resetcampos,
-              icon: Icon(
+              icon: const Icon(
                 Icons.refresh,
                 color: Colors.white,
               ))
@@ -69,66 +71,40 @@ class _PageImcState extends State<PageImc> {
               ),
               Container(
                 height: 200,
-                child: Image.asset('images/coracao.png',color: Colors.white,),
-              ),
-              TextFormField(
-                textAlign:  TextAlign.center,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: ('Peso'),
-                  hintText: 'Informe o Peso',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                child: Image.asset(
+                  'images/coracao.png',
+                  color: Colors.white,
                 ),
-                controller: pesoController,
+              ),
+              TextWidget(
+                'Peso',
+                'Informe o Peso',
+                pesoController,
+                TextInputType.number,
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'insira seu Peso';
+                    return 'Informe seu Peso!';
                   }
                 },
               ),
               const SizedBox(
                 height: 20,
               ),
-              TextFormField(
-                textAlign:  TextAlign.center,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: ('Altura'),
-                    hintText: 'Informe a Altura',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  controller: alturaController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'insira sua altura!';
-                    }
-                  }),
+              TextWidget(
+                'Altura',
+                'Informe a altura',
+                alturaController,
+                TextInputType.number,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'insira sua altura!';
+                  }
+                },
+              ),
               const SizedBox(
                 height: 20,
               ),
-              GestureDetector(
-                onTap: CalcImc,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: const Text(
-                    'calcular',
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
+              buildGestureDetector(),
               const SizedBox(height: 20),
               Text(
                 _infoText,
@@ -138,6 +114,28 @@ class _PageImcState extends State<PageImc> {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  buildGestureDetector() {
+    return GestureDetector(
+      onTap: CalcImc,
+      child: Container(
+        alignment: Alignment.center,
+        height: 50,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+        ),
+        child: const Text(
+          'calcular',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.black,
           ),
         ),
       ),
