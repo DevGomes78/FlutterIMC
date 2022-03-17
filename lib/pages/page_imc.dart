@@ -23,7 +23,6 @@ class _PageImcState extends State<PageImc> {
       _formKey = GlobalKey<FormState>();
     });
   }
-
   void CalcImc() {
     setState(() {
       double peso = double.parse(pesoController.text);
@@ -35,7 +34,7 @@ class _PageImcState extends State<PageImc> {
       } else if (imc >= 18.6 && imc < 24.9) {
         _infoText = "Peso ideal ${imc.toStringAsPrecision(3)}";
       } else if (imc >= 24.9 && imc < 29.9) {
-        _infoText = "Levemente acima do Peso ${imc.toStringAsPrecision(3)}";
+        _infoText = "acima do Peso ${imc.toStringAsPrecision(3)}";
       } else if (imc >= 29.9 && imc < 34.9) {
         _infoText = "Obesidade grau I ${imc.toStringAsPrecision(3)}";
       } else if (imc >= 34.9 && imc < 39.9) {
@@ -122,7 +121,7 @@ class _PageImcState extends State<PageImc> {
 
   buildGestureDetector() {
     return GestureDetector(
-      onTap: CalcImc,
+      onTap:  CalcImc,
       child: Container(
         alignment: Alignment.center,
         height: 50,
